@@ -199,7 +199,7 @@ waterlineApp.factory ('waterlineServiceProvider', function() {
             }
             if (!fish) {
                 fish = new Image();
-                fish.src = (osize === '3') ? '/js/fish/fishbowl.3.gallon.bt.png' :'/js/fish/fishbowl.5.gallon.png';
+                fish.src = (osize === '3') ? 'js/fish/fishbowl.3.gallon.bt.png' :'js/fish/fishbowl.5.gallon.png';
             }
             ctx.drawImage(fish, 10,90);
             ctx.fillStyle = 'white';
