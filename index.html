@@ -66,13 +66,13 @@
           </div>
           <div class="col-md-4" transition>
             <div></div>
-            <canvas ro-waterline size="2" qty="1" factor="0.21" id="jug3" ng-click="openModal('jug3')"></canvas>
+            <canvas ro-waterline size="3" qty="3" factor="0.21" id="jug3" ng-click="openModal('jug3')"></canvas>
           </div>
           <div class="col-md-2">
           </div>
           <div class="col-md-4" transition>
             <div></div>
-            <canvas ro-waterline size="4" qty="1" factor="0.16" id="jug5" ng-click="openModal('jug5')"></canvas>
+            <canvas ro-waterline size="5" qty="3" factor="0.16" id="jug5" ng-click="openModal('jug5')"></canvas>
           </div>
         </
       </ion-content>
@@ -81,7 +81,7 @@
   <script id="templates/check-in.html" type="text/ng-template">
     <ion-view view-title="fish">
       <ion-content>
-        <div class="list animate-rip">
+        <div class="list animate-rip"  ng-click="index2.html">
             <li class="col-md-6"> one fish <img ng-src="js/fish/one-fish.png" /></li>
             <li class="col-md-6"> two fish <img ng-src="js/fish/two-fish.png" /></li>
         </div>
@@ -91,9 +91,7 @@
   <script id="templates/attendees.html" type="text/ng-template">
     <ion-view view-title="event fish">
       <ion-content>
-        <div class="list animate-rip">
-              <div class="col-md-6"> one fish <img ng-src="js/fish/one-fish.png" /></div>
-              <div class="col-md-6"> two fish <img ng-src="js/fish/two-fish.png" /></div>
+        <div  ng-include="index2.html">
         </div>
       </ion-content>
     </ion-view>
