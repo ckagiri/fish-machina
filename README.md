@@ -2,8 +2,8 @@
 { name: "fish machina",
   mode: "unsettled waters",
   shortDescription:"fish bowl game.",
-  demo:"['demonstration']('http://mankindsoftware.github.io/fish-machina')",
-  search:"['die hard water jug']('https://www.google.com/search?q=die+hard+water+jug')",
+  demo:"[demonstration](http://mankindsoftware.github.io/fish-machina)",
+  search:"[die hard water jug](https://www.google.com/search?q=die+hard+water+jug)",
   purpose:{
     class:['education','entertainment'],
     description:"A tiny number of models and a tiny number of actions lends itself to a Finite State Machine solution.",
