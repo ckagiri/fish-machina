@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>UNSETTLED WATERS</title>
+  <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+  <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+  <script src="lib/ionic-material/ionic.material.js"></script>
+  <link href="lib/ionic-material/ionic.material.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/app.js"></script>
+  <script src="cordova.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+  <ion-nav-view>
+  </ion-nav-view>
+  <script id="templates/event-menu.html" type="text/ng-template">
+    <ion-side-menus enable-menu-with-back-views="false">
+      <ion-side-menu-content>
+        <ion-nav-bar class="bar-positive">
+          <ion-nav-back-button>
+          </ion-nav-back-button>
+          <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+      </ion-side-menu-content>
+      <ion-side-menu side="left">
+        <ion-header-bar class="bar-assertive">
+          <h1 class="title">turn back</h1>
+        </ion-header-bar>
+        <ion-content>
+          <ul class="list animate-rip">
+            <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on one of these links -->
+            <a href="#/event/check-in" class="item" menu-close>no way back</a>
+            <a href="#/event/attendees" class="item" menu-close>one fish</a>
+          </ul>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+  </script>
+  <script id="templates/home.html" type="text/ng-template">
+    <ion-view view-title="UNSETTLED WATERS" ng-cont>
+      <ion-content class="padding">
+      <div>
+        <b>YOUR GOAL</b> IS <b>ONLY 4 GALLONS</b> IN ONE OF THE BOWLS
+        <!-- <b>YOU CAN </b>  -->
+        YOU CAN 
+        <b>FILL</b> THE BOWL UP TO TOP WITH WATER
+        <b>TRANSFER</b> FROM ONE BOWL INTO THE OTHER
+        OR
+        <b>EMPTY</b> ALL THE WATER
+        <b>YOUR GOAL</b> IS <b>ONLY 4 GALLONS</b> IN ONE OF THE BOWLS
+      </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            &nbsp;
+          </div>
+          <div class="col-md-4" transition>
+            <div></div>
+            <canvas ro-waterline size="2" qty="1" factor="0.21" id="jug3" ng-click="openModal('jug3')"></canvas>
+          </div>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-4" transition>
+            <div></div>
+            <canvas ro-waterline size="4" qty="1" factor="0.16" id="jug5" ng-click="openModal('jug5')"></canvas>
+          </div>
+        </
+      </ion-content>
+    </ion-view>
+  </script>
+  <script id="templates/check-in.html" type="text/ng-template">
+    <ion-view view-title="fish">
+      <ion-content>
+        <div class="list animate-rip">
+            <li class="col-md-6"> one fish <img ng-src="/js/fish/one-fish.png" /></li>
+            <li class="col-md-6"> two fish <img ng-src="/js/fish/two-fish.png" /></li>
+        </div>
+      </ion-content>
+    </ion-view>
+  </script>
+  <script id="templates/attendees.html" type="text/ng-template">
+    <ion-view view-title="event fish">
+      <ion-content>
+        <div class="list animate-rip">
+              <div class="col-md-6"> one fish <img ng-src="/js/fish/one-fish.png" /></div>
+              <div class="col-md-6"> two fish <img ng-src="/js/fish/two-fish.png" /></div>
+        </div>
+      </ion-content>
+    </ion-view>
+  </script>
+  <script type="text/javascript" src="../lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../lib/lodash/lodash.js"></script>
+  <script type="text/javascript" src="../lib/machina/lib/machina.js"></script>
+  <script type="text/javascript" src="../js/fishbowl/fishbowl.js"></script>
+  <script type="text/javascript" src="../js/fishbowl/fsm.js"></script>
+  <script type="text/javascript" src="../js/waterline/waterline.js"></script>
+</body>
+
+</html>
