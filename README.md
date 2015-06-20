@@ -1,6 +1,12 @@
 # fish-machina
 ## demo
 [fish machina: unsettled waters](http://mankindsoftware.github.io/fish-machina)
+## code examination
+### 'www/'
+'index.html',
+'js/fishbowl/fsm.js',
+'js/fishbowl/fishbowl.js',
+'js/fishbowl/fishbowl.htm
 ## outline
 ```javascipt
 { name: 'fish machina',
