@@ -10,11 +10,11 @@ angular.module('fishbowl', [])
     };
 })
 .controller('transitionController', ['$scope', '$ionicModal', 'fsmService', 'waterlineServiceProvider', function($scope, $ionicModal, fsmService, waterlineServiceProvider) {
-	$scope.fsm = null;
-	$scope.ws = null;
-	var level = null;
+    $scope.fsm = null;
+    $scope.ws = null;
+    var level = null;
 
-    $ionicModal.fromTemplateUrl('js/fishbowl/fishbowl.html', {
+    $ionicModal.fromTemplateUrl('templates/openModal.html', {
         scope: $scope,
         animation: 'slide-in-up',
         fsmName: '',
@@ -29,16 +29,16 @@ angular.module('fishbowl', [])
         var ws = fsm.ws;
 
         fsm.on('newQty', function(data) {
-        	ws.setQty(data.qty);
+            ws.setQty(data.qty);
         })
 
         fsm.on('goal', function(data) {
-        	ws.setOpt('goal', data.goal);
+            ws.setOpt('goal', data.goal);
         })
 
         $scope.transition = function(state) {
             $scope.modal.hide();
-	        fsm.transition(state);
+            fsm.transition(state);
         };
 
         $scope.modal.show();
