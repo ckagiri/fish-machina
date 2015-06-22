@@ -14,7 +14,7 @@ angular.module('fishbowl', [])
 	$scope.ws = null;
 	var level = null;
 
-    $ionicModal.fromTemplateUrl('js/fishbowl/fishbowl.html', {
+    $ionicModal.fromTemplateUrl('templates/openModal.html', {
         scope: $scope,
         animation: 'slide-in-up',
         fsmName: '',

@@ -18,11 +18,20 @@ angular.module('ionicApp', ['ionic', 'ionic-material', 'waterline', 'fishbowl', 
         }
       }
     })
-    .state('eventmenu.checkin', {
-      url: '/check-in',
+    .state('eventmenu.aquarium', {
+      url: '/aquarium',
       views: {
         'menuContent' :{
-          templateUrl: 'templates/check-in.html',
+          templateUrl: 'js/fish/fish.html',
+
+        }
+      }
+    })
+    .state('eventmenu.fish', {
+      url: '/fish',
+      views: {
+        'menuContent' :{
+          templateUrl: 'templates/fish.html',
           controller: 'CheckinCtrl'
         }
       }
