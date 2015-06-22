@@ -136,6 +136,9 @@
   $(document).ready( function(){
       //Get the canvas & context 
       var c = $('canvas');
+      if (!c.length) {
+        return;
+      }
       var ct = c.get(0).getContext('2d');
       var container = $(c).parent();
 
