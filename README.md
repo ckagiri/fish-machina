@@ -1,12 +1,20 @@
 # fish-machina
+
 ## demo
 [fish machina: unsettled waters](http://mankindsoftware.github.io/fish-machina)
+
+## credits
+* David T. Miller's "machina.js"
+* Zach Fitzgerald's "ionic-material"
+* Jack Rugile's "Canvas Wave"
+
 ## code examination
 ### 'www/'
 'index.html',
 'js/fishbowl/fsm.js',
 'js/fishbowl/fishbowl.js',
 'js/fishbowl/fishbowl.htm
+
 ## outline
 ```javascipt
 { name: 'fish machina',
