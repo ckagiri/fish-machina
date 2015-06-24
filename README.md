@@ -4,9 +4,9 @@
 [fish machina: unsettled waters](http://mankindsoftware.github.io/fish-machina)
 
 ## credits
-* David T. Miller's "machina.js"
-* Zach Fitzgerald's "ionic-material"
-* Jack Rugile's "Canvas Wave"
+* Jim Cowart [Machina.js](http://machina-js.org/)
+* Zach Fitzgerald [Ionic Material](http://ionicmaterial.com/)
+* Jack Rugile [Canvas Wave](http://codepen.io/jackrugile/pen/BvLHg)
 
 ## code examination
 ### 'www/'
