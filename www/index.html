@@ -2,6 +2,7 @@
 <html ng-app="ionicApp">
 
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>UNSETTLED WATERS</title>
@@ -10,8 +11,18 @@
   <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
   <script src="lib/ionic-material/ionic.material.js"></script>
   <link href="lib/ionic-material/ionic.material.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
+  <!-- <link href="css/style.css" rel="stylesheet"> -->
   <script src="js/app.js"></script>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      border: 0;
+      overflow: hidden; /*  Disable scrollbars */
+      display: block;  /* No floating content on sides */
+    }
+  </style>
 </head>
 
 <body ng-controller="MainCtrl">
@@ -47,34 +58,44 @@
     </ion-side-menus>
   </script>
   <script id="templates/home.html" type="text/ng-template">
-    <ion-view view-title="UNSETTLED WATERS" ng-cont>
+    <ion-view view-title="UNSETTLED WATERS">
       <ion-content class="padding">
         <div>
-          <b>YOUR GOAL</b> IS <b>ONLY 4 GALLONS</b> IN ONE OF THE BOWLS
-          <!-- <b>YOU CAN </b>  -->
+           <b>YOUR GOAL</b> IS TO <b>END WITH 4 GALLONS</b> IN <b>ONE </b>OF THE BOWLS
+        </div>
+        <div class="row">
+          <div transition class="stage">
+            <canvas id="jug3jug" class="jug"></canvas>
+            <canvas waterline size="3" qty="3" factor="0.23" id="jug3" on-touch="openDialog('jug3')"  water="true"></canvas>
+          </div>
+          <div transition  class="stage">
+            <canvas id="jug5jug"  class="jug"></canvas>
+            <canvas waterline size="5" qty="5" factor="0.18" id="jug5" on-touch="openDialog('jug5')"  water="true"></canvas>
+          </div>
+        </div>
+        <div>
+          <b>ONLY 4 GALLONS</b> IN ONE OF THE BOWLS
           YOU CAN
           <b>FILL</b> THE BOWL UP TO TOP WITH WATER
           <b>TRANSFER</b> FROM ONE BOWL INTO THE OTHER OR
           <b>EMPTY</b> ALL THE WATER
           <b>YOUR GOAL</b> IS <b>ONLY 4 GALLONS</b> IN ONE OF THE BOWLS
         </div>
-        <div class="row">
-          <div class="col-md-2">
-            &nbsp;
-          </div>
-          <div class="col-md-4" transition>
-            <div></div>
-            <canvas ro-waterline size="3" qty="3" factor="0.21" id="jug3" ng-click="openModal('jug3')"></canvas>
-          </div>
-          <div class="col-md-2">
-          </div>
-          <div class="col-md-4" transition>
-            <div></div>
-            <canvas ro-waterline size="5" qty="3" factor="0.16" id="jug5" ng-click="openModal('jug5')"></canvas>
-          </div>
-          </ </ion-content>
+      </ion-content>
     </ion-view>
   </script>
+<style>
+  .stage {
+    width: 480px;
+    height: 320px;
+    position: relative;
+
+  }
+  canvas { position: absolute; }
+  .jug { z-index: 3 }
+  .water { z-index: 2 }
+  .background-layer { z-index: 1 }
+</style>
   <script id="templates/fish.html" type="text/ng-template">
     <ion-view view-title="FISH">
       <ion-content>
@@ -84,6 +105,13 @@
         </div>
       </ion-content>
     </ion-view>
+  </script>
+  <script id="templates/openPopover.html" type="text/ng-template">
+
+      <a class="button button-positive" style="width:100%;" ng-click="transition('fill')">Fill</a><br>
+      <a class="button button-positive" style="width:100%;"  ng-click="transition('offer')">Transfer </a>
+      <a class="button button-positive" style="width:100%;"  ng-click="transition('empty')">Empty</a>
+
   </script>
   <script id="templates/attendees.html" type="text/ng-template">
     <ion-view view-title="SPOILED FISH">
@@ -112,46 +140,21 @@
       </ion-content>
     </ion-view>
   </script>
-  <script id="templates/openModal.html" type="text/ng-template">
-    <ion-modal-view>
-      <ion-header-bar>
-        <h1 class="title">Choose Action</h1>
-      </ion-header-bar>
-      <ion-content>
-        <a class="button" ng-click="transition('fill')">Fill</a>
-        <a class="button" ng-click="transition('offer')">Transfer </a>
-        <a class="button" ng-click="transition('empty')">Empty</a>
-      </ion-content>
-    </ion-modal-view>
-  </script>
+
   <script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="lib/lodash/lodash.js"></script>
   <script type="text/javascript" src="lib/machina/lib/machina.js"></script>
   <script type="text/javascript" src="js/fishbowl/fishbowl.js"></script>
   <script type="text/javascript" src="js/fishbowl/fsm.js"></script>
-  <script type="text/javascript" src="js/waterline/waterline.js"></script>
+  <script type="text/javascript" src="js/waterline/jugAndWater.js"></script>
+
   <script>
-  $(document).ready( function(){
-      //Get the canvas & context 
-      var c = $('canvas');
-      var ct = c.get(0).getContext('2d');
-      var container = $(c).parent();
-
-      //Run function when browser resizes
-      $(window).resize( respondCanvas );
-
-      function respondCanvas(){ 
-          c.attr('width', $(container).width() ); //max width
-          c.attr('height', $(container).height() ); //max height
-
-          //Call a function to redraw other content (texts, images etc)
-      }
-
-      //Initial call 
-      respondCanvas();
-
-  }); 
+  window.requestAnimFrame=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(a){window.setTimeout(100/60)}}();
+  window.cancelAnimationFrame=function(){return window.cancelAnimationFrame||window.webkitCancelAnimationFrame||window.mozCancelAnimationFrame||window.oCancelAnimationFrame||window.msCancelAnimationFrame||function(a){window.setTimeout(100/60)}}();
   </script>
+
+
+
 </body>
 
 </html>

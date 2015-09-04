@@ -1,3 +1,4 @@
+'use strict';
 angular.module('fishbowl', [])
 
 .directive('transition', function() {
@@ -9,47 +10,42 @@ angular.module('fishbowl', [])
         }
     };
 })
-.controller('transitionController', ['$scope', '$ionicModal', 'fsmService', 'waterlineServiceProvider', function($scope, $ionicModal, fsmService, waterlineServiceProvider) {
-	$scope.fsm = null;
-	$scope.ws = null;
-	var level = null;
+.controller('transitionController', ['$scope', '$ionicModal', '$ionicPopup', 'fsmService',  function($scope, $ionicModal, $ionicPopup, fsmService) {
+    $scope.fsm = null; 
+    $scope.ws = null;
+    var level = null;
 
-    $ionicModal.fromTemplateUrl('templates/openModal.html', {
-        scope: $scope,
-        animation: 'slide-in-up',
-        fsmName: '',
-    })
-    .then(function(modal) {
-        $scope.modal = modal;
-    });
-
-    $scope.openModal = function(namespace) {
-
+    $scope.openDialog = function(namespace) {
         var fsm = fsmService[namespace];
-        var ws = fsm.ws;
+        var ws = fsm.ws;    
 
         fsm.on('newQty', function(data) {
-        	ws.setQty(data.qty);
+            ws.setQty(data.qty);
         })
 
         fsm.on('goal', function(data) {
-        	ws.setOpt('goal', data.goal);
+            ws.setOpt('goal', data.goal);
         })
 
         $scope.transition = function(state) {
-            $scope.modal.hide();
-	        fsm.transition(state);
+            fsm.transition(state);
+            myPopup.close();
         };
 
-        $scope.modal.show();
-    };
+        var myPopup = $ionicPopup.show({
+            title: (namespace === 'jug3' ? '3' : '5') + ' GALLON BOWL',
+            subTitle: 'CLICK ON ACTION TO TAKE',
+            templateUrl: 'templates/openPopover.html',
+            scope: $scope,
+            buttons: [
+            {   
+                text: '<b>Cancel</b>'
+            },]
 
-    $scope.closeModal = function() {
-        $scope.modal.hide();
-    };
-
-    $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-    });
+        });
+        myPopup.then(function(res) {
+          console.log('Tapped!', res);
+        });
+    }
 
 }]);

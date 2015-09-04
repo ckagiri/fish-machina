@@ -1,6 +1,6 @@
 /*global angular, machina */
 'use strict';
-
+var INITIAL_STATE = 'fill';
 var fsm = angular.module('fsm', []);
 var fsmService = fsm.factory('fsmService', function() {
 	var eventHistory = [];
@@ -10,7 +10,7 @@ var fsmService = fsm.factory('fsmService', function() {
 
 	var Jug = machina.Fsm.extend( {
 		namespace: 'jug',
-		initialState: 'empty',
+		initialState: INITIAL_STATE,
 		states: {
 			empty: {
 				_onEnter: function() {
@@ -110,16 +110,25 @@ var fsmService = fsm.factory('fsmService', function() {
 	var jug3 = new Jug({
 		namespace: 'jug3',
 		max: 3,
-		qty: 0,
+		qty: INITIAL_STATE==='fill'?this.max:0,
+		clearAll: clearAll
 	});
 
 	var jug5 = new Jug({
 		namespace: 'jug5',
 		max: 5,
-		qty: 0,
+		qty: INITIAL_STATE==='fill'?this.max:0,
 		goal: 4,
 		goalReached: false,
+		clearAll: clearAll
 	});
+
+	function clearAll() {
+		jug3.qty = 0;
+		jug3.ws.setQty(jug3.qty);
+		jug5.qty = 0;
+		jug5.ws.setQty(jug5.qty);
+	}
 
 	function forwardOffer (fsm, type, offer, transition, handle) {
 		if (offer.type === type) {
