@@ -2,7 +2,7 @@
 <html ng-app="ionicApp">
 
 <head>
-  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>UNSETTLED WATERS</title>
@@ -65,11 +65,9 @@
         </div>
         <div class="row">
           <div transition class="stage">
-            <canvas id="jug3jug" class="jug"></canvas>
             <canvas waterline size="3" qty="3" factor="0.23" id="jug3" on-touch="openDialog('jug3')"  water="true"></canvas>
           </div>
           <div transition  class="stage">
-            <canvas id="jug5jug"  class="jug"></canvas>
             <canvas waterline size="5" qty="5" factor="0.18" id="jug5" on-touch="openDialog('jug5')"  water="true"></canvas>
           </div>
         </div>
